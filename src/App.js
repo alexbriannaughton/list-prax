@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Pet from './Pet';
 
 function App() {
+
+  const [pets, setPets] = useState([
+    { name: 'Tummy Rooters', fav_food: 'candies', birthday: '5/14/2020' },
+    { name: 'Jeans Baltar Lil Boo Hammond', fav_food: 'Pastries, meats', birthday: '5/5/2002' },
+    { name: 'Gustard', fav_food: 'Any', birthday: '?/2002' }
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {pets.map((pet) => {
+        return <Pet
+          key={pet.name}
+          pet={pet}
+          fav_food={pet.fav_food}
+          birthday={pet.birthday}
+        />
+      })}
     </div>
   );
 }
